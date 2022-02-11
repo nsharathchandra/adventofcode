@@ -27,11 +27,24 @@ For example:
 ()) and ))( both result in floor -1 (the first basement level).
 ))) and )())()) both result in floor -3.
 To what floor do the instructions take Santa?
+
+
+--- Part Two ---
+Now, given the same instructions, find the position of the first character that causes him to enter the basement
+(floor -1). The first character in the instructions has position 1, the second character has position 2, and so on.
+
+For example:
+
+) causes him to enter the basement at character position 1.
+()()) causes him to enter the basement at character position 5.
+What is the position of the character that causes Santa to first enter the basement?
+
+
 */
 
 public class Day1 {
 
-    public int notQuiteLisp(String word){
+    public int notQuiteLispPartOne(String word){
         int floors = 0;
         for(char command : word.toCharArray()){
             if(command == '('){
@@ -42,6 +55,24 @@ public class Day1 {
             }
         }
         return floors;
+    }
+
+    public int notQuiteLispPartTwo(String word){
+        int floors = 0;
+        int currentPosition = 0;
+        for(char command : word.toCharArray()){
+            if(command == '('){
+                floors++;
+            }
+            else{
+                floors--;
+            }
+            currentPosition++;
+            if(floors == -1){
+                return currentPosition;
+            }
+        }
+        return currentPosition;
     }
 
 }
